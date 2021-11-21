@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+    <meta name="color-scheme" content="light dark">
+
+    <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
+    <link rel="stylesheet" href="css/index.css">
+
+    <title>RentalZ</title>
+</head>
+
+<body>
+    <!-- PAGE "HOME" -->
+    <div data-role="page" id="page-home">
+        <div data-role="header" data-position="fixed"></div>
+
+        <div data-role="main" class="ui-content">
+            <h1>Welcome to RentalZ</h1>
+            <ul id="list-apartment" data-role="listview" class="ui-nodisc-icon ui-alt-icon"></ul>
+        </div>
+
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar">
+                <ul>
+                    <li>
+                        <a href="#page-home" data-transition="none"
+                            class="ui-btn ui-btn-b ui-icon-home ui-btn-icon-notext ui-nodisc-icon ui-state-persist active">Home</a>
+                    </li>
+
+                    <li>
+                        <a href="#page-addapartment" data-transition="none"
+                           class="ui-btn ui-btn-b ui-icon-location ui-btn-icon-notext ui-nodisc-icon ui-state-persist">Adding Apartment</a>
+                    </li>
+
+                    <li>
+                        <a href="#page-search" data-transition="none"
+                           class="ui-btn ui-btn-b ui-icon-search ui-btn-icon-notext ui-nodisc-icon ui-state-persist">Search</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE "ADDING APARTMENTS" -->
+    <div data-role="page" id="page-addapartment">
+        <div data-role="header" data-position="fixed"></div>
+
+        <div data-role="main" class="ui-content">
+            <h1>Add Accommodation Post</h1>
+            <!-- Adding Form -->
+            <form id="frm-addapartment">
+                <span id="error" style="color: red;"></span>
+
+                <label for="name">Name of provider</label>
+                <input type="text" placeholder="Insert here..." id="name" required>
+
+                <label for="address">Address</label>
+                <input type="text" placeholder="Insert here..." id="address" required>
+
+                <label for="house-type">Types of House (Apartment, Condos, Flat, Duplex)</label>
+                <input type="text" placeholder="Insert here..." id="house-type" required>
+
+                <label for="bedrooms">Bedroom (Studio, 1 Bed, 2 Beds)</label>
+                <input type="text" placeholder="Insert here..." id="bedrooms" required>
+
+                <label for="furniture">Furniture (Furnished, Unfurnished, Part Furnished)</label>
+                <input type="text" placeholder="Insert here..." id="furniture" required>
+
+                <label for="rent-price">Rent Price (VND / day)</label>
+                <input type="number" placeholder="Insert here..." id="rent-price" required>
+
+                <label for="note">Note</label>
+                <input type="text" placeholder="Insert here..." id="note" required>
+
+                <label for="reporter">Please insert your name here</label>
+                <input type="text" placeholder="Insert here..." id="reporter" required>
+
+                <button type="submit">Add</button>
+            </form>
+        </div>
+
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar">
+                <ul>
+                    <li>
+                        <a href="#page-home" data-transition="none"
+                           class="ui-btn ui-btn-b ui-icon-home ui-btn-icon-notext ui-nodisc-icon">Home</a>
+                    </li>
+
+                    <li>
+                        <a href="#page-addapartment" data-transition="none"
+                           class="ui-btn ui-btn-b ui-icon-location ui-btn-icon-notext ui-nodisc-icon ui-state-persist active">Adding Apartment</a>
+                    </li>
+
+                    <li>
+                        <a href="#page-search" data-transition="none"
+                           class="ui-btn ui-btn-b ui-icon-search ui-btn-icon-notext ui-nodisc-icon ui-state-persist">Search</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE "APARTMENT DETAILS" -->
+    <div data-role="page" id="page-detail">
+        <div data-role="header" data-position="fixed">
+            <div style="margin-left: 5px;">
+                <a style="border: none; background-color: transparent;" href="#page-home" data-transition="none"
+                    class="ui-btn ui-icon-carat-l ui-btn-icon-notext ui-nodisc-icon">Back to list</a>
+            </div>
+        </div>
+
+        <div data-role="main" class="ui-content">
+            <!-- DISPLAY DETAILS -->
+            <label for="id">ID</label>
+            <input type="text" id="id" readonly><br>
+
+            <label for="id">Name of provider</label>
+            <input type="text" id="name" readonly><br>
+
+            <label for="id">Address</label>
+            <input type="text" id="address" readonly><br>
+
+            <label for="price">Price</label>
+            <input type="number" id="price" readonly><br>
+
+            <label for="types">Types of house</label>
+            <input type="text" id="types" readonly><br>
+
+            <label for="bedrooms">Bedrooms</label>
+            <input type="text" id="bedrooms" readonly><br>
+
+            <label for="furniture">Furniture</label>
+            <input type="text" id="furniture" readonly><br>
+
+            <label for="note">Note</label>
+            <input type="text" id="note" readonly><br>
+
+            <label for="reporter">Reporter</label>
+            <input type="text" id="reporter" readonly><br>
+
+            <label for="createddate">Created Date</label>
+            <input type="text" id="createddate" readonly><br>
+
+            <!-- BUTTONS "UPDATE" & "DELETE" -->
+            <div class="ui-grid-a">
+                <div class="ui-block-a" style="padding-right: 5px;">
+                    <button class="ui-btn ui-corner-all" id="btn-update" disabled>Update</button>
+                </div>
+
+                <div class="ui-block-b" style="padding-left: 5px;">
+                    <a href="#frm-delete" data-rel="popup" data-position-to="window" data-transition="pop"
+                        class="ui-btn ui-corner-all ui-btn-b">Delete</a>
+                </div>
+            </div>
+
+            <form data-role="popup" id="frm-delete">
+                <div data-role="header">
+                    <h1 style="padding-top: 20px;">Delete Apartment?</h1>
+                </div>
+
+                <div role="main" class="ui-content">
+                    <h3>Are you sure you want to delete this apartment?</h3>
+                    <p>This action cannot be undone.</p>
+                    <br>
+
+                    <p><em>Please type "<strong>Confirm</strong>" to delete this apartment.</em></p>
+                    <input type="text" id="txt-delete">
+
+                    <div style="text-align: right;">
+                        <a class="ui-btn ui-corner-all ui-btn-inline" data-rel="back">Cancel</a>
+                        <button type="submit" class="ui-btn ui-corner-all ui-btn-inline ui-disabled"
+                            id="btn-delete">Delete</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar">
+                <ul>
+                    <li>
+                        <a href="#page-home" data-transition="none"
+                           class="ui-btn ui-btn-b ui-icon-home ui-btn-icon-notext ui-nodisc-icon ui-state-persist active">Home</a>
+                    </li>
+
+                    <li>
+                        <a href="#page-addapartment" data-transition="none"
+                           class="ui-btn ui-btn-b ui-icon-location ui-btn-icon-notext ui-nodisc-icon ui-state-persist">Adding Apartment</a>
+                    </li>
+
+                    <li>
+                        <a href="#page-search" data-transition="none"
+                           class="ui-btn ui-btn-b ui-icon-search ui-btn-icon-notext ui-nodisc-icon ui-state-persist">Search</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE "SEARCH" -->
+    <div data-role="page" id="page-search">
+        <div data-role="header" data-position="fixed"></div>
+
+        <div data-role="main" class="ui-content">
+            <h1>Search</h1>
+            <form id="frm-search">
+                <input type="text" placeholder="Name" id="name">
+                <input type="text" placeholder="Address" id="address">
+                <input type="number" placeholder="Price" id="price">
+                <input type="text" placeholder="House types" id="types">
+                <input type="text" placeholder="Bedrooms" id="bedrooms">
+                <input type="text" placeholder="Furniture" id="furniture">
+
+                <button type="submit">Search</button>
+            </form>
+
+            <br/>
+
+            <ul id="list-apartment" data-role="listview" class="ui-nodisc-icon ui-alt-icon"></ul>
+        </div>
+
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar">
+                <ul>
+                    <li>
+                        <a href="#page-home" data-transition="none"
+                           class="ui-btn ui-btn-b ui-icon-home ui-btn-icon-notext ui-nodisc-icon">Home</a>
+                    </li>
+
+                    <li>
+                        <a href="#page-addapartment" data-transition="none"
+                           class="ui-btn ui-btn-b ui-icon-location ui-btn-icon-notext ui-nodisc-icon ui-state-persist">Adding Apartment</a>
+                    </li>
+
+                    <li>
+                        <a href="#page-search" data-transition="none"
+                           class="ui-btn ui-btn-b ui-icon-search ui-btn-icon-notext ui-nodisc-icon ui-state-persist active">Search</a>
+                    </li>
+            </div>
+        </div>
+    </div>
+    <script src="cordova.js"></script>
+    <script src="js/jquery.js"></script>
+    <script src="js/jquery.mobile-1.4.5.min.js"></script>
+    <script src="js/index.js"></script>
+</body>
+
+</html>
